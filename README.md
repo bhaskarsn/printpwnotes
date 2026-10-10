@@ -2,6 +2,8 @@
 
 **By Bhaskar Kumar** — bhaskarkumar787878@gmail.com
 
+🌐 **Visit:** [https://bhaskarsn.github.io/printpwnotes/](https://bhaskarsn.github.io/printpwnotes/)
+
 A free, browser-based tool to convert Physics Wallah (PW) PDF notes into
 print-ready files — without uploading anything anywhere.
 
