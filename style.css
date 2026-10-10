@@ -3,6 +3,7 @@
   --accent:#6c63ff; --accent2:#a78bfa;
   --text:#e8e8e8; --muted:#666; --success:#22c55e; --error:#ef4444;
   --radius:14px;
+  --card-width:480px;
 }
 
 * { box-sizing:border-box; margin:0; padding:0; }
@@ -27,7 +28,7 @@ header p { color:var(--muted); margin-top:5px; font-size:.88rem; }
 /* ── Upload card ── */
 .upload-card {
   background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
-  padding:28px; width:100%; max-width:480px;
+  padding:28px; width:100%; max-width:var(--card-width);
 }
 .drop-zone {
   border:2px dashed var(--border); border-radius:var(--radius); padding:40px 20px;
@@ -276,9 +277,10 @@ footer strong { color:var(--accent2); }
 .email-link:hover { text-decoration: underline; }
 
 .features-section {
-  width: 100%; max-width: 480px;
+  width: 100%; max-width: var(--card-width);
   margin-top: 24px;
   display: flex; flex-direction: column; gap: 12px;
+  align-items: stretch;
 }
 
 .feat-heading {
