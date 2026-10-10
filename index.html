@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Print PW Notes — By Bhaskar Kumar</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<header>
+  <h1>🖨️ Print PW Notes</h1>
+  <p>By <strong style="color:var(--accent2)">Bhaskar Kumar</strong> &bull; <a class="email-link" href="mailto:bhaskarkumar787878@gmail.com">bhaskarkumar787878@gmail.com</a></p>
+</header>
+
+<!-- ── Upload screen ── -->
+<div class="upload-card" id="uploadScreen">
+  <div class="drop-zone" id="dropZone">
+    <input type="file" id="fileInput" accept="application/pdf,.pdf"/>
+    <div class="icon">☁️</div>
+    <div class="label">Drop your PDF here or <span>browse</span></div>
+  </div>
+  <div class="file-name" id="fileName"></div>
+  <p class="hint">
+    Made for Physics Wallah-style notes. After picking a file you can mark each page —
+    leave it <strong style="color:var(--accent2)">Normal</strong> for black-bg slides and
+    image embedded with plain white background like pdf,
+    pick <strong style="color:#f5c842">Embed</strong> for pages with a yellowish question
+    image like taken photo from book looks warm yellow is pasted in,
+    or <strong style="color:var(--error)">Remove</strong> to drop the page from the output.
+  </p>
+</div>
+
+<!-- ── Features section ── -->
+<section class="features-section" id="featuresSection">
+  <h3 class="feat-heading">Why Print PW Notes?</h3>
+
+  <div class="feature-box">
+    <div class="feat-icon">🔒</div>
+    <div class="feat-content">
+      <div class="feat-title">100% Private</div>
+      <div class="feat-body">Your PDF never leaves your device. Everything runs entirely in your browser — no uploads, no server, no data collection of any kind.</div>
+    </div>
+  </div>
+
+  <div class="feature-box">
+    <div class="feat-icon">🎨</div>
+    <div class="feat-content">
+      <div class="feat-title">Zero Visibility Loss for Colourful Notes</div>
+      <div class="feat-body">Colourful PW slides are processed to keep all colours intact when printed. Black-background slides print cleanly without washing out your notes.</div>
+    </div>
+  </div>
+
+  <div class="feature-box">
+    <div class="feat-icon">📖</div>
+    <div class="feat-content">
+      <div class="feat-title">Warm Bookish Questions? Use Embed</div>
+      <div class="feat-body">For pages with a yellowish warm-toned question image — like a photo taken from a book and pasted into slides — select the <strong style="color:#f5c842">Embed</strong> option for that page to preserve the warm tone perfectly.</div>
+    </div>
+  </div>
+
+  <div class="feature-box">
+    <div class="feat-icon">🗑️</div>
+    <div class="feat-content">
+      <div class="feat-title">Delete Pages Before Processing</div>
+      <div class="feat-body">Mark any page as <strong style="color:var(--error)">Remove</strong> to drop it from the final output. Clean up unwanted pages, cover sheets, or blanks before downloading.</div>
+    </div>
+  </div>
+
+  <!-- Terms & Copyright -->
+  <div class="legal-box">
+    <div class="legal-title">📋 Terms &amp; Conditions</div>
+    <div class="legal-body">
+      <p>This tool is provided free of charge for personal use only.</p>
+      <p>All PDF processing happens locally in your browser. No files are ever uploaded to any server.</p>
+      <p>This tool is not affiliated with Physics Wallah (PW) in any way. All content you process remains your own responsibility.</p>
+      <p>The developer is not liable for any data loss, output errors, or misuse of this tool.</p>
+      <p class="copyright">© 2026 Bhaskar Kumar. All rights reserved. Unauthorised copying or redistribution of this software is prohibited.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Page editor screen ── -->
+<div id="editorScreen">
+  <div class="editor-header">
+    <h2 id="editorTitle">Loading pages…</h2>
+    <span class="pg-count" id="pgCount"></span>
+  </div>
+
+  <div class="pages-scroll" id="pagesScroll"></div>
+
+  <div class="editor-footer">
+    <div class="counts" id="counts">Loading…</div>
+
+    <!-- Process button + worker selector side by side -->
+    <div class="process-row">
+      <button class="btn" id="processBtn" disabled>Process PDF</button>
+
+      <div class="worker-panel">
+        <label class="worker-label" for="workerSelect">⚙ Workers</label>
+        <select id="workerSelect" class="worker-select">
+          <option value="1">1 — Safe (slowest)</option>
+          <option value="2">2 — Balanced</option>
+          <option value="3">3 — Fast</option>
+          <option value="4">4 — Faster</option>
+          <option value="5">5 — Aggressive</option>
+          <option value="6">6 — ⚠ May crash</option>
+        </select>
+        <div class="worker-warn" id="workerWarn" hidden>
+          ⚠ Higher numbers can cause a crash on devices with low RAM.
+        </div>
+      </div>
+    </div>
+    <!-- /process-row -->
+
+    <button class="btn secondary" id="backBtn">← Pick a different file</button>
+
+    <div class="progress" id="progress" hidden>
+      <div class="bar"><div class="fill" id="fill"></div></div>
+      <div class="prow">
+        <span class="stage" id="stage"></span>
+        <span class="pct"   id="pct"></span>
+      </div>
+      <div class="pdetail">
+        <span id="detail"></span>
+        <span id="clock"></span>
+      </div>
+    </div>
+
+    <a class="btn dl" id="dlBtn" hidden>Download PDF</a>
+    <div class="status" id="status" role="status"></div>
+  </div>
+</div>
+
+<footer>
+  Print PW Notes &bull; <strong>By Bhaskar Kumar</strong> &bull; Runs entirely in your browser<br>
+  <span style="font-size:.72rem;">© 2026 Bhaskar Kumar — Free for personal use only</span>
+</footer>
+
+<!-- PDF.js for rendering pages to pixels -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<!-- pdf-lib for writing the output PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<!-- App logic -->
+<script src="app.min.js"></script>
+</body>
+</html>
