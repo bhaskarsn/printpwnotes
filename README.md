@@ -68,5 +68,4 @@ The developer is not liable for any data loss or output errors.
 This software is provided for **personal use only**.
 Redistribution, copying, modification, or commercial use is strictly
 prohibited without prior written permission from the author.
-# printpwnotes-private
-# printpwnotes
+
