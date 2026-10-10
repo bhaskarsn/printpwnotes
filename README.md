@@ -38,7 +38,7 @@ time while your PDF is being processed.
 
 ## 🚀 How to Use
 
-🌐 **Visit:** [https://printpwnotes.duckdns.org](https://printpwnotes.duckdns.org)
+🌐 **Visit:** [https://bhaskarsn.github.io/printpwnotes/](https://bhaskarsn.github.io/printpwnotes/)
 
 1. Open the website and drop your PW PDF (or click to browse)
 2. The PDF opens in the page editor — every page is shown as a thumbnail
